@@ -9,7 +9,7 @@
       meisai intake, JPY → legacy :amount_jpy, others → generic :amount + :currency (minor units);
     - the G2 credential/PAN guard STILL fires on a normalized worldwide intake (defining gate)."
   (:require [clojure.test :refer [deftest is run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [meisai.methods.sources :as sources]
             [meisai.methods.ingest :as ingest]
             [meisai.methods.kotoba :as kotoba]))

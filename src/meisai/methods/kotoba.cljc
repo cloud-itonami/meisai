@@ -13,7 +13,7 @@
   commit-DAG. Keys stay ':…' STRINGS. EAVT = [op entity attribute value]; op is :db/add only.
   Deterministic: caller supplies tx-id + as-of (no wall clock) → resume-safe. Self-contained EDN
   reader (parse-edn), consistent with the Python method (no cross-actor dependency)."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             #?(:clj [clojure.java.io :as io])))
 
 (defn add [entity attr value] [":db/add" entity attr value])

@@ -11,7 +11,7 @@
   (G2, ingest/guard raises before persist); local-only (G3, data/ gitignored, persist to LOCAL log
   only — publishes/pins/posts nothing); provenance + dedup by intake CID (G5, resume-safe,
   deterministic, no wall clock). NO external I/O. Byte-identical commit-DAG to autorun.py."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [meisai.methods.ingest :as ingest]
             [meisai.methods.kotoba :as k]
             #?(:clj [clojure.java.io :as io])))

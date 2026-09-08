@@ -8,7 +8,7 @@
     - multi-currency recurring lands with its currency;
     - the kaiyaku handoff is ADVISORY :review and NEVER :sever (meisai surfaces, kaiyaku decides)."
   (:require [clojure.test :refer [deftest is run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [meisai.methods.recurring :as rec]
             [meisai.methods.ingest :as ingest]))
 

@@ -16,7 +16,7 @@
       are deterministic content hashes → re-ingest of the same intake is a no-op (dedup by CID).
 
   Deterministic (no wall clock, no randomness). Byte-identical row hashes + tx CIDs to ingest.py."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [meisai.methods.kotoba :as kotoba]
             #?(:clj [clojure.java.io :as io])))
 
@@ -46,7 +46,7 @@
   guard). Throws ex-info on violation; returns nil otherwise."
   [doc]
   (doseq [leaf (leaves doc)]
-    (let [s (str leaf) low (str/lower-case s)]
+    (let [s (str leaf) low (str/lower s)]
       (when (and (str/starts-with? low ":") (some #(str/includes? low %) forbidden-key-tokens))
         (throw (ex-info (str "G2: credential-shaped key " (pr-str s) " is unrepresentable in meisai")
                         {:gate :G2})))

@@ -8,7 +8,7 @@
     - dedup by intake content CID (a second cycle appends NOTHING, resume-safe); tamper detected;
     - G2: a credential-shaped key or PAN-shaped value RAISES (unrepresentable);
     - byte-parity: the 2-intake head CID equals the Python kotoba.py value."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.lang.text] [clojure.test :refer [deftest is run-tests]]
             [clojure.java.io :as io]
             [meisai.methods.autorun :as autorun]
             [meisai.methods.ingest :as ingest]
@@ -41,13 +41,13 @@
       (is (and (empty? (:appended r2)) (= 2 (:skipped r2))) "second cycle appends nothing (dedup)")
       (is (= 2 (count (k/read-log log))) "log length still 2"))
     ;; new intake → exactly one new tx
-    (spit (io/file intake "2026-06.edn") (clojure.string/replace edn-a "2026-05" "2026-06"))
+    (spit (io/file intake "2026-06.edn") (kotoba.lang.text/replace edn-a "2026-05" "2026-06"))
     (is (= 1 (count (:appended (autorun/run-cycle 3 (str intake) log)))) "new intake → one new tx")
     (let [head-before (k/head-cid log)]
       (autorun/run-cycle 4 (str intake) log)
       (is (= head-before (k/head-cid log)) "resume-safe: idle cycle leaves head unchanged"))
     ;; tamper-detect
-    (spit log (clojure.string/replace (slurp log) "42560" "1"))
+    (spit log (kotoba.lang.text/replace (slurp log) "42560" "1"))
     (is (false? (:ok (k/verify-chain log))) "tamper is detected")))
 
 (deftest g2-credential-and-pan-unrepresentable

@@ -1,7 +1,7 @@
 (ns meisai.methods.test-kotoba
   "Clojure tests for meisai.methods.kotoba, asserting exact cross-language oracle values."
   (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [meisai.methods.kotoba :as k])
   #?(:clj (:import [java.io File])))
 

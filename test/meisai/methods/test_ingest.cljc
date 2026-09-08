@@ -7,7 +7,7 @@
     - determinism: same intake → byte-identical datoms (entity ids are content hashes);
     - G2 (the defining gate): a credential-shaped key or a PAN-shaped value anywhere in the
       intake RAISES — a card number or secret is unrepresentable in the Datom log."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.lang.text] [clojure.test :refer [deftest is run-tests]]
             [meisai.methods.ingest :as ingest]
             [meisai.methods.kotoba :as kotoba]))
 
@@ -28,7 +28,7 @@
         cid (ingest/intake-cid intake-edn)
         datoms (ingest/statement-datoms doc cid)
         stmt (filter #(= (nth % 1) "meisai-stmt:sumitclub:2026-05") datoms)
-        rows (filter #(clojure.string/starts-with? (nth % 1) "meisai-row:") datoms)]
+        rows (filter #(kotoba.lang.text/starts-with? (nth % 1) "meisai-row:") datoms)]
     (is (>= (count stmt) 4)
         "statement entity id derives from source+month")
     (is (every? #(= (nth % 0) ":db/add") datoms)

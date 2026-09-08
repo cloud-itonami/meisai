@@ -16,7 +16,7 @@
   G1/G3 hold: the input is the member's OWN local log and the handoff OUTPUT is personal data
   (it reveals subscriptions) → it is written under the gitignored data/, never committed/pinned/
   posted. The pure fns operate on datoms only, so they are tested on SYNTHETIC datoms with no file."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [meisai.methods.kotoba :as kotoba]
             [meisai.methods.fx :as fx]
             #?(:clj [clojure.java.io :as io])))
