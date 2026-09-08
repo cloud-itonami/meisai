@@ -21,7 +21,7 @@
   G2/G3 hold here for free: this namespace touches PUBLIC company metadata only; it parses no
   statement and persists nothing under data/. normalize feeds ingest, where the G2 credential/PAN
   guard still runs on every intake."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [meisai.methods.kotoba :as kotoba]
             #?(:clj [clojure.edn :as edn])
             #?(:clj [clojure.java.io :as io])))

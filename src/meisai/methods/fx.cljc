@@ -14,7 +14,7 @@
   Rates are an INPUT (the member's own local snapshot, or a future G7-gated live leg), never a
   committed table here (a committed rate would rot). `rates` = {currency-string → JPY per 1 MAJOR
   unit}, e.g. {\":usd\" 150.0 \":eur\" 162.0}. Pure; no I/O; deterministic."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; minor-unit exponent per currency (default 2); JPY/KRW/… are 0-exponent.
 (def ^:private currency-exponent
