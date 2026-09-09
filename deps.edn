@@ -7,7 +7,7 @@
  :aliases
  {:test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner
-                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+                      {:git/tag "v0.5.1" :git/sha "dfb30dd6605cb6c0efc275e1df1736f6e90d4d73"}}
          ;; `-r` because the namespaces are `meisai.…test-<thing>`, and the runner's
          ;; default pattern is `.*-test$`. Without it the run silently covered two
          ;; namespaces out of nine and still reported success.
