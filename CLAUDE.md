@@ -73,14 +73,14 @@ heartbeats build the **identical commit-DAG** (the 2-intake head CID
 `b0f03ac8fd4ddac1f0715278c13d847498f80e09b6102d4164f7a3a834251b62c` is asserted equal in
 `test-autorun cid-byte-parity-with-python`). The **G2 guard** (credential-shaped key / PAN-shaped
 value → raise) is ported and test-enforced. `kotoba.cljc` embeds its own EDN reader (no cross-actor
-dep), matching `parse_edn`. Run: `bb -cp 20-actors -e "(require 'meisai.methods.test-autorun
+dep), matching `parse_edn`. Run: `kbb -cp 20-actors -e "(require 'meisai.methods.test-autorun
 'clojure.test)(clojure.test/run-tests 'meisai.methods.test-autorun)"`.
 
 ## Build & Test
 
 ```bash
 ./run_tests.sh                      # 6 bb suites, 28 tests / 103 assertions, hermetic
-bb -cp 20-actors -e "(require 'meisai.methods.autorun)(meisai.methods.autorun/-main \"--cycles\" \"1\")"
+kbb -cp 20-actors -e "(require 'meisai.methods.autorun)(meisai.methods.autorun/-main \"--cycles\" \"1\")"
 ```
 
 ## R1 triggers (deferred)
