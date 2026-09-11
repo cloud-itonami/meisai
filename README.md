@@ -29,7 +29,7 @@ portal the fetch leg learns to read lands through the same ingest.
 ```bash
 # 1. fetch (member-run, on the member's machine — see computer-use-clj README):
 #    SUMITCLUB_OUT=data/intake/2026-05.edn \
-#      clojure -M:dev:examples -e "(require 'sumitclub-meisai) (sumitclub-meisai/-main)"
+#      kbb -M:dev:examples -e "(require 'sumitclub-meisai) (sumitclub-meisai/-main)"
 
 # 2. ingest (no network, no credentials):
 python3 methods/autorun.py --cycles 1
@@ -53,11 +53,11 @@ statement log it lives OUTSIDE `data/` and IS committed.
 
 ```bash
 # honest coverage report + the ingest worklist (which registered issuers still need an adapter):
-bb -e '(require (quote meisai.methods.sources))(meisai.methods.sources/-main)'
+kbb -e '(require (quote meisai.methods.sources))(meisai.methods.sources/-main)'
 #   101 sources (1 fetch-supported, 100 registry-only / worklist); 18 networks; kinds {…}
 
 # regenerate the public Datom log (the registry "data itself in datomic/edn", 922 datoms, committed):
-bb -e '(require (quote meisai.methods.sources))(meisai.methods.sources/-main "--emit")'
+kbb -e '(require (quote meisai.methods.sources))(meisai.methods.sources/-main "--emit")'
 #   → generated world-card-issuers.kotoba.edn  (one append-only tx, deterministic CID)
 ```
 
@@ -81,7 +81,7 @@ looks like a subscription) and emits a kaiyaku-consumable handoff — the `meisa
 that mirrors `tate → kaiyaku`.
 
 ```bash
-bb -e '(require (quote meisai.methods.recurring))(meisai.methods.recurring/-main)'
+kbb -e '(require (quote meisai.methods.recurring))(meisai.methods.recurring/-main)'
 #   → data/kaiyaku-handoff.edn  (recurring candidates; advisory :review)
 ```
 
