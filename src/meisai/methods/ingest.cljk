@@ -16,7 +16,7 @@
       are deterministic content hashes → re-ingest of the same intake is a no-op (dedup by CID).
 
   Deterministic (no wall clock, no randomness). Byte-identical row hashes + tx CIDs to ingest.py."
-  (:require [kotoba.lang.text :as str]
+  (:require [kotoba.bytes.sha256 :as sha256] [kotoba.lang.text :as str]
             [meisai.methods.kotoba :as kotoba]
             #?(:clj [clojure.java.io :as io])))
 
@@ -25,8 +25,7 @@
 (def ^:private pan-re #"(?:\d[ -]?){13,19}")
 
 (defn- sha256-hex [^String s]
-  (let [b (.digest (java.security.MessageDigest/getInstance "SHA-256") (.getBytes s "UTF-8"))]
-    (apply str (map #(format "%02x" (bit-and (int %) 0xff)) b))))
+  (sha256/sha256-hex s))
 
 (defn intake-cid
   "Content address of the intake string's UTF-8 bytes (G5 provenance + dedup key)."
