@@ -18,7 +18,7 @@
   Deterministic (no wall clock, no randomness). Byte-identical row hashes + tx CIDs to ingest.py."
   (:require [kotoba.bytes.sha256 :as sha256] [kotoba.lang.text :as str]
             [meisai.methods.kotoba :as kotoba]
-            #?(:clj [clojure.java.io :as io])))
+            #?(:clj [kotoba.io :as io])))
 
 (def ^:private forbidden-key-tokens ["password" "secret" "otp" "cvv" "credential" "token" "pin"])
 ;; 13–19 consecutive digits, optionally space/dash-grouped → a primary account number shape.
