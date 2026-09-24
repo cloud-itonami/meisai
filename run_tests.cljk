@@ -1,4 +1,4 @@
-(require '[clojure.test :as t]
+(require '[kotoba.test :as t]
          'meisai.methods.test-autorun 'meisai.methods.test-fx
          'meisai.methods.test-ingest 'meisai.methods.test-kotoba
          'meisai.methods.test-price-increases 'meisai.methods.test-recurring

@@ -4,7 +4,7 @@
   Asserts: minor-unit→yen conversion (incl. JPY passthrough + unknown-rate → nil), and that
   enrich-handoff annotates only NON-JPY records with a JPY-equivalent + the rate used — never
   mutating the native amount/currency (FX stays a report-time view, never a Datom)."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [meisai.methods.fx :as fx]
             [meisai.methods.recurring :as rec]
             [meisai.methods.ingest :as ingest]))
