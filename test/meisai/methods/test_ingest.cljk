@@ -7,7 +7,7 @@
     - determinism: same intake → byte-identical datoms (entity ids are content hashes);
     - G2 (the defining gate): a credential-shaped key or a PAN-shaped value anywhere in the
       intake RAISES — a card number or secret is unrepresentable in the Datom log."
-  (:require [kotoba.lang.text] [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.lang.text] [kotoba.test :refer [deftest is run-tests]]
             [meisai.methods.ingest :as ingest]
             [meisai.methods.kotoba :as kotoba]))
 

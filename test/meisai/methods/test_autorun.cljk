@@ -8,7 +8,7 @@
     - dedup by intake content CID (a second cycle appends NOTHING, resume-safe); tamper detected;
     - G2: a credential-shaped key or PAN-shaped value RAISES (unrepresentable);
     - byte-parity: the 2-intake head CID equals the Python kotoba.py value."
-  (:require [kotoba.lang.text] [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.lang.text] [kotoba.test :refer [deftest is run-tests]]
             [clojure.java.io :as io]
             [meisai.methods.autorun :as autorun]
             [meisai.methods.ingest :as ingest]

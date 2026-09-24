@@ -3,3 +3,4 @@ __pycache__/
 # committed to this public repo. The whole data/ tree stays on the member's machine.
 data/
 .cpcache/
+.nbb/

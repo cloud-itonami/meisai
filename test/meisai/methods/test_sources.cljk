@@ -8,7 +8,7 @@
     - normalize maps a raw issuer statement (any field names, any currency) → the canonical
       meisai intake, JPY → legacy :amount_jpy, others → generic :amount + :currency (minor units);
     - the G2 credential/PAN guard STILL fires on a normalized worldwide intake (defining gate)."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [kotoba.lang.text :as str]
             [meisai.methods.sources :as sources]
             [meisai.methods.ingest :as ingest]

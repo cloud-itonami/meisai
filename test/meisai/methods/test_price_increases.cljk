@@ -7,7 +7,7 @@
   own local rows; merchant is a service, never a person; no credential/PAN (only merchant + amount +
   month)."
   (:require [meisai.methods.recurring :as r]
-            [clojure.test :refer [deftest is run-tests]]))
+            [kotoba.test :refer [deftest is run-tests]]))
 
 (defn- rd [eid stmt merchant amt]
   [[":add" eid ":meisai.row/stmt" stmt] [":add" eid ":meisai.row/merchant" merchant]
