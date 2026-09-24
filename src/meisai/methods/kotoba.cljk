@@ -13,7 +13,7 @@
   commit-DAG. Keys stay ':…' STRINGS. EAVT = [op entity attribute value]; op is :db/add only.
   Deterministic: caller supplies tx-id + as-of (no wall clock) → resume-safe. Self-contained EDN
   reader (parse-edn), consistent with the Python method (no cross-actor dependency)."
-  (:require [kotoba.lang.text :as str]
+  (:require [kotoba.bytes.sha256 :as sha256] [kotoba.lang.text :as str]
             #?(:clj [clojure.java.io :as io])))
 
 (defn add [entity attr value] [":db/add" entity attr value])
@@ -51,8 +51,7 @@
   (str "{\"datoms\":[" (str/join "," (map json-val datoms)) "],\"prev\":" (json-val prev-cid) "}"))
 
 (defn- sha256-hex [^String s]
-  (let [b (.digest (java.security.MessageDigest/getInstance "SHA-256") (.getBytes s "UTF-8"))]
-    (apply str (map #(format "%02x" (bit-and (int %) 0xff)) b))))
+  (sha256/sha256-hex s))
 
 (defn tx-cid
   ([datoms] (tx-cid datoms ""))
