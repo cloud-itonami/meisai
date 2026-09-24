@@ -23,7 +23,7 @@
   guard still runs on every intake."
   (:require [kotoba.lang.text :as str]
             [meisai.methods.kotoba :as kotoba]
-            #?(:clj [clojure.edn :as edn])
+            #?(:clj [kotoba.lang.edn :as edn])
             #?(:clj [clojure.java.io :as io])))
 
 (defn- kw->str
