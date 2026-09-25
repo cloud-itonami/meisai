@@ -14,7 +14,7 @@
   Deterministic: caller supplies tx-id + as-of (no wall clock) → resume-safe. Self-contained EDN
   reader (parse-edn), consistent with the Python method (no cross-actor dependency)."
   (:require [kotoba.bytes.sha256 :as sha256] [kotoba.lang.text :as str]
-            #?(:clj [clojure.java.io :as io])))
+            #?(:clj [kotoba.io :as io])))
 
 (defn add [entity attr value] [":db/add" entity attr value])
 
@@ -128,13 +128,13 @@
 #?(:clj
    (do
      (def log-default
-       (-> (io/file *file*) .getParentFile .getParentFile
+       (-> (io/file *file*) io/parent-file io/parent-file
            (io/file "data" "persisted" "meisai.datoms.kotoba.edn") str))
 
      (defn append-tx [tx log-path]
        (let [f (io/file log-path)]
-         (when-let [p (.getParentFile f)] (.mkdirs p))
-         (when-not (.exists f)
+         (when-let [p (io/parent-file f)] (io/mkdirs p))
+         (when-not (io/exists? f)
            (spit f (str ";; meisai kotoba Datom log — append-only EAVT transactions "
                         "(content-addressed DAG). MEMBER-OWN card statements only; this file "
                         "lives under the gitignored data/ and is NEVER committed, pinned, or "
@@ -144,7 +144,7 @@
 
      (defn read-log [log-path]
        (let [f (io/file log-path)]
-         (if-not (.exists f) []
+         (if-not (io/exists? f) []
                  (->> (str/split-lines (slurp f))
                       (map str/trim)
                       (remove #(or (empty? %) (str/starts-with? % ";")))

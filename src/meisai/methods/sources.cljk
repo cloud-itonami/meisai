@@ -24,7 +24,7 @@
   (:require [kotoba.lang.text :as str]
             [meisai.methods.kotoba :as kotoba]
             #?(:clj [kotoba.lang.edn :as edn])
-            #?(:clj [clojure.java.io :as io])))
+            #?(:clj [kotoba.io :as io])))
 
 (defn- kw->str
   "Real keyword (registry uses clojure.edn → real keywords) → meisai datom convention ':name'
@@ -159,7 +159,7 @@
        looking at the value."
        [f n]
        (loop [f (when f (io/file f)) n n]
-         (if (or (nil? f) (zero? n)) f (recur (.getParentFile f) (dec n)))))
+         (if (or (nil? f) (zero? n)) f (recur (io/parent-file f) (dec n)))))
 
      (def ^:private sources-dir
        ;; `sources/` sits beside `src/`, so it is NOT on the classpath and has to be
@@ -173,7 +173,7 @@
        ;; namespace reports no failures rather than reporting that.
        (or (some-> (System/getenv "MEISAI_SOURCES_DIR") not-empty io/file)
            (let [d (ancestor *file* 4)]
-             (when (and d (.isDirectory (io/file d "sources"))) (io/file d "sources")))
+             (when (and d (io/directory? (io/file d "sources"))) (io/file d "sources")))
            (io/file "sources")))
 
      (def registry-default (str (io/file sources-dir "world-card-issuers.edn")))
@@ -219,7 +219,7 @@
        (let [datoms (vec (registry-datoms reg))
              tx (kotoba/make-tx datoms 1 20260621 "")
              f (io/file out-path)]
-         (when-let [p (.getParentFile f)] (.mkdirs p))
+         (when-let [p (io/parent-file f)] (io/mkdirs p))
          (spit f (str ";; world-card-issuers.kotoba.edn — meisai 明細 coverage registry as a kotoba\n"
                       ";; Datom log (ONE append-only tx). PUBLIC company metadata only — no statement,\n"
                       ";; row, credential, or PAN. GENERATED from sources/world-card-issuers.edn by\n"
