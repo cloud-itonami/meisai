@@ -19,7 +19,7 @@
   (:require [kotoba.lang.text :as str]
             [meisai.methods.kotoba :as kotoba]
             [meisai.methods.fx :as fx]
-            #?(:clj [clojure.java.io :as io])))
+            #?(:clj [kotoba.io :as io])))
 
 ;; ── EAVT → row view ──────────────────────────────────────────────────────────
 (defn entity-view
@@ -156,7 +156,7 @@
 ;; ── IO (clj only) ────────────────────────────────────────────────────────────
 #?(:clj
    (do
-     (def ^:private here (-> (io/file *file*) .getParentFile .getParentFile))
+     (def ^:private here (-> (io/file *file*) io/parent-file io/parent-file))
 
      (defn run
        "Read the local Datom log → handoff EDN under data/ (gitignored). Returns a summary."
@@ -164,7 +164,7 @@
        (let [datoms (mapcat #(get % ":tx/datoms") (kotoba/read-log log-path))
              hs (handoff datoms opts)
              f (io/file out-path)]
-         (when-let [p (.getParentFile f)] (.mkdirs p))
+         (when-let [p (io/parent-file f)] (io/mkdirs p))
          (spit f (handoff->edn hs))
          {:candidates (count hs) :out out-path}))
 
