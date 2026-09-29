@@ -5,7 +5,7 @@
   Folds the member's OWN statement rows (already on the local Datom log) into recurring-charge
   CANDIDATES — a merchant billed across ≥N distinct months at a stable amount looks like a
   subscription — and emits a kaiyaku-consumable handoff worklist (the meisai→kaiyaku wiring the
-  README/CLAUDE.md flagged as R1). It mirrors the tate→kaiyaku handoff pattern (out/*-handoff.edn
+  README/AGENTS.md flagged as R1). It mirrors the tate→kaiyaku handoff pattern (out/*-handoff.edn
   → kaiyaku handoff-ingest), pointed at card statements instead of contract clauses.
 
   meisai SURFACES, it never DECIDES: every candidate carries :handoff/action :review and

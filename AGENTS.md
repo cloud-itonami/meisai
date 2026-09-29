@@ -1,4 +1,4 @@
-# com-etzhayyim-meisai — CLAUDE.md
+# com-etzhayyim-meisai — AGENTS.md
 
 ## Identity
 
